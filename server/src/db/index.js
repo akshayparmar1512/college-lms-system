@@ -2,6 +2,8 @@ import {DataSource} from "typeorm"
 
  console.log("database url",process.env.DATABASE_URL)
 
+
+//  create datasource that holds our database connection settings and pools
 const AppDataSource = new DataSource({
     type:"postgres",
     url:process.env.DATABASE_URL,
