@@ -1,6 +1,7 @@
+
 import { EntitySchema } from "typeorm";
 
-export const CollegeSchema = new EntitySchema({
+export const College = new EntitySchema({
     name: "College",
     tableName: "colleges",
     columns: {
@@ -52,6 +53,14 @@ export const CollegeSchema = new EntitySchema({
         updated_at: {
             type: "timestamp with time zone",
             updateDate: true
+        },
+       
+    },
+    relations:{
+        users:{
+            type:"one-to-many",
+            target:"User",
+            inverseSide:"college"
         }
     }
 })

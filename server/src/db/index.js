@@ -1,5 +1,6 @@
 import {DataSource} from "typeorm"
-import { CollegeSchema } from "../entities/College.entity.js"
+import { College } from "../entities/College.entity.js"
+import { User } from "../entities/user.entity.js"
 
  console.log("database url",process.env.DATABASE_URL)
 
@@ -16,8 +17,8 @@ export const AppDataSource = new DataSource({
     // username:process.env.DB_USERNAME,
     // password:process.env.DB_PASSWORD,
     // database:process.env.DB_NAME,
-    entities:[CollegeSchema],
-    synchronize:false,
+    entities:[College,User],
+    synchronize:true,
     logging:false
 })
 
