@@ -1,0 +1,56 @@
+
+import { EntitySchema } from "typeorm";
+
+export const Curriculum = new EntitySchema({
+    name:"Curriculum",
+    tableName:"curriculums",
+    columns:{
+        curriculum_id:{
+            primary:true,
+            type:"uuid",
+            generated:"uuid"
+        },
+        semester:{
+            type:"smallint",
+            nullable:false,
+        },
+        version:{
+            type:"smallint",
+            nullable:false,
+            default:1
+        },
+        created_at:{
+            type:"timestamp with time zone",
+            createDate:true
+        },
+        updated_at:{
+            type:"timestamp with time zone",
+            updateDate:true
+        },
+        deleted_at:{
+            type:"timestamp with time zone",
+            deleteDate:true
+        }
+    },
+    relations:{
+        college:{
+            type:"many-to-one",
+            target:"College",
+            inverseSide:"curriculums",
+            joinColumn:{name:"college_id"},
+            nullable:false
+        },
+        department:{
+            type:"many-to-one",
+            target:"Department",
+            inverseSide:"curriculums",
+            joinColumn:{name:"department_id"},
+            nullable:false
+        },
+        curriculumSubjects:{
+            type:"one-to-many",
+            target:"CurriculumSubject",
+            inverseSide:"curriculum"
+        }
+    }
+})

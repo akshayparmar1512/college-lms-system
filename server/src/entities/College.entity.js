@@ -61,6 +61,22 @@ export const College = new EntitySchema({
             type:"one-to-many",
             target:"User",
             inverseSide:"college"
+        },
+        departments:{
+            type:"one-to-many",
+            target:"Department",
+            inverseSide:"college"
+        },
+        subjects:{
+            type:"one-to-many",
+            target:"Subject",
+            inverseSide:"college"
+        },
+        curriculums:{
+            type:"one-to-many",
+            target:"Curriculum",
+            inverseSide:"college"
         }
-    }
+    },
+   
 })

@@ -30,11 +30,6 @@ export const User = new EntitySchema({
             enum:["admin","faculty","student"],
             nullable:false
         },
-        profile_image_url:{
-            type:"varchar",
-            length:255,
-            nullable:true
-        },
         status:{
             type:"enum",
             enum:["active","inactive"],
@@ -56,6 +51,7 @@ export const User = new EntitySchema({
             target:"College",
             inverseSide:"users",
             joinColumn:{name:"college_id"},
+            nullable:false,
             onDelete:"CASCADE"
         }
     }

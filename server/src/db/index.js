@@ -1,23 +1,24 @@
 import {DataSource} from "typeorm"
 import { College } from "../entities/College.entity.js"
 import { User } from "../entities/user.entity.js"
-
- console.log("database url",process.env.DATABASE_URL)
-
+import { Department } from "../entities/department.entity.js"
+import { Subject } from "../entities/subject.entity.js"
+import { Curriculum } from "../entities/curriculum.entity.js"
+import { CurriculumSubject } from "../entities/curriculum_subject.entity.js"
 
 //  create datasource that holds our database connection settings and pools
 export const AppDataSource = new DataSource({
     type:"postgres",
-    url:process.env.DATABASE_URL,
-    ssl:{
-        rejectUnauthorized:true
-    },
-    // host:process.env.DB_HOST,
-    // port:process.env.DB_PORT,
-    // username:process.env.DB_USERNAME,
-    // password:process.env.DB_PASSWORD,
-    // database:process.env.DB_NAME,
-    entities:[College,User],
+    // url:process.env.DATABASE_URL,
+    // ssl:{
+    //     rejectUnauthorized:true
+    // },
+    host:process.env.DB_HOST,
+    port:process.env.DB_PORT,
+    username:process.env.DB_USERNAME,
+    password:process.env.DB_PASSWORD,
+    database:process.env.DB_NAME,
+    entities:[College,User,Department,Subject,Curriculum,CurriculumSubject],
     synchronize:true,
     logging:false
 })

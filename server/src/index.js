@@ -1,7 +1,7 @@
 import "dotenv/config";
 // import dotenv from "dotenv"
 // dotenv.config()
-console.log("ENV loaded:", Boolean(process.env.DATABASE_URL));
+
 import { connectDB } from "./db/index.js"
 import app from "./app.js"
 
