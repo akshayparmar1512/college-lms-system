@@ -53,6 +53,16 @@ export const User = new EntitySchema({
             joinColumn:{name:"college_id"},
             nullable:false,
             onDelete:"CASCADE"
+        },
+        faculty:{
+            type:"one-to-one",
+            target:"FacultyProfile",
+            inverseSide:"user"
+        },
+        student:{
+            type:"one-to-one",
+            target:"StudentProfile",
+            inverseSide:"user"
         }
     }
 })

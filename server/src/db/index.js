@@ -5,6 +5,17 @@ import { Department } from "../entities/department.entity.js"
 import { Subject } from "../entities/subject.entity.js"
 import { Curriculum } from "../entities/curriculum.entity.js"
 import { CurriculumSubject } from "../entities/curriculum_subject.entity.js"
+import { AcademicYear } from "../entities/AcademicYear.entity.js"
+import { AcademicCalendar } from "../entities/academic_calendar.entity.js"
+import { FacultyProfile } from "../entities/faculty_profile.entity.js"
+import { StudentProfile } from "../entities/student_profile.entity.js"
+import { StudentEnrollment } from "../entities/student_enrollment.entity.js"
+import { FacultySubjectMapping } from "../entities/faculty_subject_mapping.entity.js"
+import { Assignment } from "../entities/assignment.entity.js"
+import { AssignmentSubmission } from "../entities/assignment_submission.entity.js"
+import { StudyMaterial } from "../entities/study_material.entity.js"
+import { AttandanceSession } from "../entities/attendance_session.entity.js"
+import { StudentAttendance } from "../entities/student_attendance.entity.js"
 
 //  create datasource that holds our database connection settings and pools
 export const AppDataSource = new DataSource({
@@ -18,7 +29,25 @@ export const AppDataSource = new DataSource({
     username:process.env.DB_USERNAME,
     password:process.env.DB_PASSWORD,
     database:process.env.DB_NAME,
-    entities:[College,User,Department,Subject,Curriculum,CurriculumSubject],
+    entities:[
+        College,
+        User,
+        Department,
+        Subject,
+        Curriculum,
+        CurriculumSubject,
+        AcademicYear,
+        AcademicCalendar,
+        FacultyProfile,
+        StudentProfile,
+        StudentEnrollment,
+        FacultySubjectMapping,
+        Assignment,
+        AssignmentSubmission,
+        StudyMaterial,
+        AttandanceSession,
+        StudentAttendance
+    ],
     synchronize:true,
     logging:false
 })

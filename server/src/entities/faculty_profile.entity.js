@@ -1,0 +1,68 @@
+import { EntitySchema } from "typeorm";
+
+export const FacultyProfile = new EntitySchema({
+    name:"FacultyProfile",
+    tableName:"faculty_profiles",
+    columns:{
+        faculty_id:{
+            type:"uuid",
+            primary:true,
+        },
+        profile_image_url:{
+            type:"varchar",
+            length:255,
+        },
+        designation:{
+            type:"varchar",
+            length:100,
+            nullable:true
+        },
+        qualification:{
+            type:"varchar",
+            length:100,
+            nullable:true
+        },
+        phone_number:{
+            type:"varchar",
+            length:20,
+            nullable:true
+        },
+        created_at:{
+            type:"timestamp with time zone",
+            createDate:true
+        },
+        updated_at:{
+            type:"timestamp with time zone",
+            updateDate:true
+        }
+    },
+    relations:{
+        user:{
+            type:"one-to-one",
+            target:"User",
+            inverseSide:"faculty",
+            joinColumn:{name:"faculty_id"},
+            nullable:false
+        },
+        facultySubjectMappings:{
+            type:"one-to-many",
+            target:"FacultySubjectMapping",
+            inverseSide:"faculty"
+        },
+          assignments:{
+            type:"one-to-many",
+            target:"Assignment",
+            inverseSide:"faculty"
+        },
+         studyMaterials:{
+            type:"one-to-many",
+            target:"StudyMaterial",
+            inverseSide:"faculty"
+        },
+         attandanceSessions:{
+            type:"one-to-many",
+            target:"AttandanceSession",
+            inverseSide:"faculty"
+        }
+    }
+})

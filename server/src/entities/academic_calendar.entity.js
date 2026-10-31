@@ -1,0 +1,77 @@
+import { EntitySchema } from "typeorm";
+
+export const AcademicCalendar = new EntitySchema({
+    name:"AcademicCalendar",
+    tableName:"academic_calendars",
+    columns:{
+        calendar_id:{
+            type:"uuid",
+            primary:true,
+            generated:"uuid"
+        },
+        college_id:{
+            type:"uuid",
+            nullable:false
+        },
+        academic_year_id:{
+            type:"uuid",
+            nullable:false
+        },
+        semester_number:{
+            type:"smallint",
+            nullable:false
+        },
+        semester_start_date:{
+            type:"date",
+            nullable:false
+        },
+        semester_end_date:{
+            type:"date",
+            nullable:false
+        },
+        mid_term_1_date:{
+            type:"date",
+            nullable:true
+        },
+        mid_term_2_date:{
+            type:"date",
+            nullable:true
+        },
+        total_working_days:{
+            type:"smallint",
+            nullable:true
+        },
+        end_term_thoery_date:{
+            type:"date",
+            nullable:true
+        },
+        end_term_practical_date:{
+            type:"date",
+            nullable:true
+        },
+        created_at:{
+            type:"timestamp with time zone",
+            createDate:true
+        },
+        updated_at:{
+            type:"timestamp with time zone",
+            updateDate:true
+        }
+    },
+    relations:{
+        college:{
+            type:"many-to-one",
+            target:"College",
+            inverseSide:"academiccalendars",
+            joinColumn:{name:"college_id"},
+            nullable:false
+        },
+        academicyear:{
+            type:"many-to-one",
+            target:"AcademicYear",
+            inverseSide:"academiccalendars",
+            joinColumn:{name:"academic_year_id"},
+            nullable:false
+        }
+    }
+})

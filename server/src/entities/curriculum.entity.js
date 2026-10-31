@@ -51,6 +51,31 @@ export const Curriculum = new EntitySchema({
             type:"one-to-many",
             target:"CurriculumSubject",
             inverseSide:"curriculum"
+        },
+         studentEnrollments:{
+            type:"one-to-many",
+            target:"StudentEnrollment",
+            inverseSide:"curriculum"
+        },
+          facultySubjectMappings:{
+            type:"one-to-many",
+            target:"FacultySubjectMapping",
+            inverseSide:"curriculum"
+        },
+         assignments:{
+            type:"one-to-many",
+            target:"Assignment",
+            inverseSide:"curriculum"
+        },
+          studyMaterials:{
+            type:"one-to-many",
+            target:"StudyMaterial",
+            inverseSide:"curriculum"
+        },
+         attandanceSessions:{
+            type:"one-to-many",
+            target:"AttandanceSession",
+            inverseSide:"curriculum"
         }
     }
 })

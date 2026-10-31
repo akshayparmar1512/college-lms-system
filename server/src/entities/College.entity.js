@@ -76,6 +76,41 @@ export const College = new EntitySchema({
             type:"one-to-many",
             target:"Curriculum",
             inverseSide:"college"
+        },
+        academicyears:{
+            type:"one-to-many",
+            target:"AcademicYear",
+            inverseSide:"college"
+        },
+        academiccalendars:{
+            type:"one-to-many",
+            target:"AcademicCalendar",
+            inverseSide:"college"
+        },
+        studentEnrollments:{
+            type:"one-to-many",
+            target:"StudentEnrollment",
+            inverseSide:"college"
+        },
+        facultySubjectMappings:{
+            type:"one-to-many",
+            target:"FacultySubjectMapping",
+            inverseSide:"college"
+        },
+        assignments:{
+            type:"one-to-many",
+            target:"Assignment",
+            inverseSide:"college"
+        },
+        studyMaterials:{
+            type:"one-to-many",
+            target:"StudyMaterial",
+            inverseSide:"college"
+        },
+        attandanceSessions:{
+            type:"one-to-many",
+            target:"AttandanceSession",
+            inverseSide:"college"
         }
     },
    

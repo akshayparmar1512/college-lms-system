@@ -1,0 +1,76 @@
+import { EntitySchema } from "typeorm";
+
+export const StudentProfile = new EntitySchema({
+    name:"StudentProfile",
+    tableName:"student_profiles",
+    columns:{
+        student_id:{
+            type:"uuid",
+            primary:true
+        },
+        profile_image_url:{
+            type:"varchar",
+            length:255,
+            nullable:true
+        },
+        enrollment_no:{
+            type:"varchar",
+            length:30,
+            nullable:false
+        },
+        admission_year:{
+            type:"smallint",
+            nullable:false
+        },
+        phone_number:{
+            type:"varchar",
+            length:15
+        },
+        father_name:{
+            type:"varchar",
+            length:255,
+            nullable:false
+        },
+        mother_name:{
+            type:"varchar",
+            length:255,
+            nullable:false
+        },
+        parent_phone_number:{
+            type:"varchar",
+            length:15,
+            nullable:false
+        },
+        created_at:{
+            type:"timestamp with time zone",
+            createDate:true
+        },
+        updated_at:{
+            type:"timestamp with time zone",
+            updateDate:true
+        }
+    },
+    relations:{
+        user:{
+            type:"one-to-one",
+            target:"User",
+            inverseSide:"student",
+            joinColumn:{name:"student_id"}
+        },
+        studentEnrollments:{
+            type:"one-to-many",
+            target:"StudentEnrollment",
+            inverseSide:"student"
+        },
+          assignmentSubmissions:{
+            type:"one-to-many",
+            target:"AssignmentSubmission",
+            inverseSide:"subject"
+        },
+         studentAttendances:{
+            type:"one-to-many",
+            target:"StudentAttendance",
+            inverseSide:"student"
+        }
+    }
+})

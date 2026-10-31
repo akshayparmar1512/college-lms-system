@@ -1,0 +1,71 @@
+import { EntitySchema } from "typeorm";
+
+export const StudentEnrollment = new EntitySchema({
+    name:"StudentEnrollment",
+    tableName:"student_enrollments",
+    columns:{
+        enrollment_id:{
+            primary:true,
+            type:"uuid",
+            generated:"uuid"
+        },
+        college_id:{
+            type:"uuid"
+        },
+        academic_year_id:{
+            type:"uuid"
+        },
+        curriculum_id:{
+            type:"uuid"
+        },
+        student_id:{
+            type:"uuid"
+        },
+        divison:{
+            type:"varchar",
+            length:10
+        },
+        batch:{
+            type:"varchar",
+            length:10
+        },
+        status:{
+            type:"enum",
+            enum:["running","completed"]
+        },
+        created_at:{
+            type:"timestamp with time zone",
+            createDate:true
+        },
+        updated_at:{
+            type:"timestamp with time zone",
+            updateDate:true
+        }
+    },
+    relations:{
+        college:{
+            type:"many-to-one",
+            target:"College",
+            inverseSide:"studentEnrollments",
+            joinColumn:{name:"college_id"}
+        },
+        student:{
+            type:"many-to-one",
+            target:"StudentProfile",
+            inverseSide:"studentEnrollments",
+            joinColumn:{name:"student_id"}
+        },
+        academicYear:{
+            type:"many-to-one",
+            target:"AcademicYear",
+            inverseSide:"studentEnrollments",
+            joinColumn:{name:"academic_year_id"}
+        },
+        curriculum:{
+            type:"many-to-one",
+            target:"Curriculum",
+            inverseSide:"studentEnrollments",
+            joinColumn:{name:"curriculum_id"}
+        }
+    }
+})

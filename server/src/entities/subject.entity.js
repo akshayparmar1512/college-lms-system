@@ -44,7 +44,28 @@ export const Subject = new EntitySchema({
             type:"one-to-many",
             target:"CurriculumSubject",
             inverseSide:"subject",
-        }
+        },
+         facultySubjectMappings:{
+            type:"one-to-many",
+            target:"FacultySubjectMapping",
+            inverseSide:"subject"
+        },
+          assignments:{
+            type:"one-to-many",
+            target:"Assignment",
+            inverseSide:"subject"
+        },
+         studyMaterials:{
+            type:"one-to-many",
+            target:"StudyMaterial",
+            inverseSide:"subject"
+        },
+         attandanceSessions:{
+            type:"one-to-many",
+            target:"AttandanceSession",
+            inverseSide:"subject"
+        },
+          
     },
     uniques:[
         {

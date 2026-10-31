@@ -1,0 +1,76 @@
+import { EntitySchema } from "typeorm";
+
+export const FacultySubjectMapping = new EntitySchema({
+    name:"FacultySubjectMapping",
+    tableName:"faculty_subject_mappings",
+    columns:{
+        mapping_id:{
+            primary:true,
+            type:"uuid",
+            generated:"uuid"
+        },
+        college_id:{
+            type:"uuid"
+        },
+        academic_year_id:{
+            type:"uuid"
+        },
+        curriculum_id:{
+            type:"uuid"
+        },
+        faculty_id:{
+            type:"uuid"
+        },
+        subject_id:{
+            type:"uuid"
+        },
+        divison:{
+            type:"varchar",
+            length:20
+        },
+        batch:{
+            type:"varchar",
+            length:20
+        },
+        created_at:{
+            type:"timestamp with time zone",
+            createDate:true
+        },
+        updated_at:{
+            type:"timestamp with time zone",
+            updateDate:true
+        }
+    },
+    relations:{
+        college:{
+            type:"many-to-one",
+            target:"College",
+            inverseSide:"facultySubjectMappings",
+            joinColumn:{name:"college_id"}
+        },
+        academicYear:{
+            type:"many-to-one",
+            target:"AcademicYear",
+            inverseSide:"facultySubjectMappings",
+            joinColumn:{name:"academic_year_id"}
+        },
+        faculty:{
+            type:"many-to-one",
+            target:"FacultyProfile",
+            inverseSide:"facultySubjectMappings",
+            joinColumn:{name:"faculty_id"}
+        },
+        curriculum:{
+            type:"many-to-one",
+            target:"Curriculum",
+            inverseSide:"facultySubjectMappings",
+            joinColumn:{name:"curriculum_id"},
+        },
+        subject:{
+            type:"many-to-one",
+            target:"Subject",
+            inverseSide:"facultySubjectMappings",
+            joinColumn:{name:"subject_id"}
+        }
+    }
+})
