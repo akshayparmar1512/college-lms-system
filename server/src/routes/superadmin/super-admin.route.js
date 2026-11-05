@@ -4,5 +4,5 @@ import { upload } from "../../middlewares/multer.middleware.js"
 
 export const superAdminRoute = Router()
 
-superAdminRoute.post("/register-college-admin",upload.single("logo"),registerCollegeWithAdmin)
+superAdminRoute.post("/register-college-admin",upload.single("collegeLogo"),registerCollegeWithAdmin)
 

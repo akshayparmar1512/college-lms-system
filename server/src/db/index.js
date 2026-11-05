@@ -16,6 +16,7 @@ import { AssignmentSubmission } from "../entities/assignment_submission.entity.j
 import { StudyMaterial } from "../entities/study_material.entity.js"
 import { AttandanceSession } from "../entities/attendance_session.entity.js"
 import { StudentAttendance } from "../entities/student_attendance.entity.js"
+import { UserSession } from "../entities/user_sessions.entity.js"
 
 //  create datasource that holds our database connection settings and pools
 export const AppDataSource = new DataSource({
@@ -46,7 +47,8 @@ export const AppDataSource = new DataSource({
         AssignmentSubmission,
         StudyMaterial,
         AttandanceSession,
-        StudentAttendance
+        StudentAttendance,
+        UserSession
     ],
     synchronize:true,
     logging:false

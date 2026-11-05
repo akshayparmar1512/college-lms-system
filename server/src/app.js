@@ -1,8 +1,8 @@
 import express from "express"
 import cors from "cors"
-import { upload } from "./middlewares/multer.middleware.js"
 import { route } from "./routes/index.route.js"
 import { errorHandlerMiddleware } from "./middlewares/errorhandler.middleware.js"
+import cookieParser from "cookie-parser"
 const app = express()
 
 
@@ -13,6 +13,9 @@ app.use(cors({
 
 // middleware for parse json data from incoming request
 app.use(express.json({limit:"10kb"}))
+
+// middleware for parse incoming cookies and send cookie
+app.use(cookieParser())
 
 app.use("/api/v1",route)
 

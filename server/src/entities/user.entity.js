@@ -9,6 +9,9 @@ export const User = new EntitySchema({
             type:"uuid",
             generated:"uuid"
         },
+        college_id:{
+            type:"uuid"
+        },
         full_name:{
             type:"varchar",
             length:255,
@@ -62,6 +65,11 @@ export const User = new EntitySchema({
         student:{
             type:"one-to-one",
             target:"StudentProfile",
+            inverseSide:"user"
+        },
+        sessions:{
+            type:"one-to-many",
+            target:"UserSession",
             inverseSide:"user"
         }
     }

@@ -1,5 +1,5 @@
 import { ApiError } from "../utils/ApiError.js"
-import { ErrorsMessage } from "../utils/errors.js"
+import { message } from "../utils/message.js"
 
 export const errorHandlerMiddleware = (error, req, res, next) => {
    
@@ -8,7 +8,7 @@ export const errorHandlerMiddleware = (error, req, res, next) => {
     return res.status(statusCode).json({
         success: false,
         data: null,
-        message: statusCode === 500 ? ErrorsMessage.INTERNAL_SERVER_ERROR : error.message,
+        message: statusCode === 500 ? message.INTERNAL_SERVER_ERROR : error.message,
         erros: error instanceof ApiError ? error.errors : []
 
     })
