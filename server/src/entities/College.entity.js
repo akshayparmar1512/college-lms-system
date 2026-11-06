@@ -111,6 +111,11 @@ export const College = new EntitySchema({
             type:"one-to-many",
             target:"AttandanceSession",
             inverseSide:"college"
+        },
+         sessions:{
+            type:"one-to-many",
+            target:"UserSession",
+            inverseSide:"college"
         }
     },
    
