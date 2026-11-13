@@ -2,22 +2,22 @@ import nodemailer from "nodemailer"
 
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
-    }
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
+  }
 })
 
-export const sendAdminCredentialsMail = async (adminName, collegeName, adminEmail, temporaryPassword,to) => {
+export const sendAdminCredentialsMail = async (adminName, collegeName, adminEmail, temporaryPassword, to) => {
 
-    const mailOptions = {
-        from: `ADP LMS System <${process.env.EMAIL_USER}>`,
-        to: to,
-        subject: `Admin Credentials - ADP LMS System`,
-        html: `
+  const mailOptions = {
+    from: `ADP LMS System <${process.env.EMAIL_USER}>`,
+    to: to,
+    subject: `Admin Credentials - ADP LMS System`,
+    html: `
             <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,6 +138,153 @@ export const sendAdminCredentialsMail = async (adminName, collegeName, adminEmai
 </html>
 
         `
-    }
-    return await transporter.sendMail(mailOptions)
+  }
+  return await transporter.sendMail(mailOptions)
+}
+
+
+export const sendForgotPasswordOtpMail = async (userName, collegeName, userEmail, otp) => {
+  const mailOptions = {
+    from: `${collegeName} <${process.env.EMAIL_USER}>`,
+    to: `${userEmail}`,
+    subject: "Password Reset Request",
+    html: `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+  </head>
+
+  <body style="
+    margin: 0;
+    padding: 25px 12px;
+    background-color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+  ">
+
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center">
+
+          <table width="100%" cellpadding="0" cellspacing="0"
+            style="max-width: 520px;">
+
+            <tr>
+              <td style="padding: 20px 10px;">
+
+                <h2 style="
+                  color: #242B33;
+                  font-size: 23px;
+                  margin: 0 0 25px;
+                ">
+                  Password Reset Request
+                </h2>
+
+                <p style="
+                  color: #59636E;
+                  font-size: 15px;
+                  line-height: 1.7;
+                ">
+                  Hello ${userName},
+                </p>
+
+                <p style="
+                  color: #59636E;
+                  font-size: 14px;
+                  line-height: 1.7;
+                ">
+                  We received a request to reset the password
+                  associated with your account at
+                  <strong>${collegeName}</strong>.
+                  Please use the OTP below to verify your identity.
+                </p>
+
+                <!-- OTP -->
+                <table width="100%" cellpadding="0" cellspacing="0"
+                  style="
+                    background-color: #DCE9EC;
+                    border-radius: 8px;
+                    margin: 25px 0;
+                  ">
+                  <tr>
+                    <td align="center" style="padding: 25px 15px;">
+
+                      <p style="
+                        color: #2F6572;
+                        font-size: 12px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        margin: 0 0 12px;
+                      ">
+                        YOUR VERIFICATION CODE
+                      </p>
+
+                      <h1 style="
+                        color: #242B33;
+                        font-size: 32px;
+                        letter-spacing: 8px;
+                        margin: 0;
+                      ">
+                        ${otp}
+                      </h1>
+
+                      <p style="
+                        color: #59636E;
+                        font-size: 12px;
+                        margin: 12px 0 0;
+                      ">
+                        Valid for 5 minutes
+                      </p>
+
+                    </td>
+                  </tr>
+                </table>
+
+                <h3 style="
+                  color: #242B33;
+                  font-size: 15px;
+                  margin: 25px 0 10px;
+                ">
+                  Security Notice
+                </h3>
+
+                <ul style="
+                  color: #59636E;
+                  font-size: 13px;
+                  line-height: 1.8;
+                  padding-left: 20px;
+                ">
+                  <li>Never share this OTP with anyone.</li>
+                  <li>Our team will never ask you for this OTP.</li>
+                  <li>If you did not request a password reset,
+                      please ignore this email.</li>
+                </ul>
+
+                <p style="
+                  color: #59636E;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  margin-top: 28px;
+                ">
+                  Regards,<br>
+                  <strong style="color: #242B33;">
+                    ${collegeName} Administration
+                  </strong>
+                </p>
+
+              </td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+    </table>
+
+  </body>
+  </html>
+  `
+  }
+  return await transporter.sendMail(mailOptions)
 }

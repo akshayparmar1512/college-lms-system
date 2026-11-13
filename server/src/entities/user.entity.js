@@ -71,6 +71,16 @@ export const User = new EntitySchema({
             type:"one-to-many",
             target:"UserSession",
             inverseSide:"user"
+        },
+        PasswordResetOtps:{
+            type:"one-to-many",
+            target:"PasswordResetOtp",
+            inverseSide:"user"
+        },
+        PasswordResetTokens:{
+            type:"one-to-many",
+            target:"PasswordResetToken",
+            inverseSide:"user"
         }
     }
 })
